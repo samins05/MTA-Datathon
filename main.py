@@ -6,10 +6,11 @@
 
 import pandas as pd
 from sodapy import Socrata
+from passwords import *
 
 # Unauthenticated client only works with public data sets. Note 'None'
 # in place of application token, and no username or password:
-client = Socrata("https://data.ny.gov/resource/wujg-7c2s.json", None)
+client = Socrata("data.ny.gov", key)
 
 # Example authenticated client (needed for non-public datasets):
 # client = Socrata(data.ny.gov,
@@ -19,7 +20,7 @@ client = Socrata("https://data.ny.gov/resource/wujg-7c2s.json", None)
 
 # First 2000 results, returned as JSON from API / converted to Python list of
 # dictionaries by sodapy.
-results = client.get("5f5g-n3cz", limit=2000)
+results = client.get("wujg-7c2s", limit=2000) # increase limit if you want more data
 
 # Convert to pandas DataFrame
-results_df = pd.DataFrame.from_records(results)
+#results_df = pd.DataFrame.from_records(results)
